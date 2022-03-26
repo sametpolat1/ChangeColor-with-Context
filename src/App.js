@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import './App.css';
 import UserList from './component/UserList';
+import { UserContext } from './context/UserContext';
+
+
 
 const data = [
   {id:1 , name:"Ahmet", email:"ahmet@site.com", age:22, color:"lightcyan"},
@@ -15,10 +18,13 @@ function App() {
       users.map(item => (item.id === id ? {...item, color:color} : item))
      ) }
   return (
-    <div className="App">
+    // <UserContext.Provider value= "App Comp. Gelen Deger">
+      <UserContext.Provider value= {{changeColor, users}}>
+      <div className="App">
       <h1>App content</h1>
-      <UserList users={users} changeColor={changeColor}/>
+      <UserList/>
     </div>
+    </UserContext.Provider>
   );
 }
 
