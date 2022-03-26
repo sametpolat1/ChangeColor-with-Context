@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import UserList from './component/UserList';
+
+const data = [
+  {id:1 , name:"Ahmet", email:"ahmet@site.com", age:22, color:"lightcyan"},
+  {id:2 , name:"Emin", email:"emin@site.com", age:25, color:"honeydew"},
+  {id:3 , name:"Polat", email:"polat@site.com", age:21, color:"mistyrose"}
+]
 
 function App() {
+  const [users, setUsers] = useState(data)
+  const changeColor = (id,color) => {
+    setUsers ( 
+      users.map(item => (item.id === id ? {...item, color:color} : item))
+     ) }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>App content</h1>
+      <UserList users={users} changeColor={changeColor}/>
     </div>
   );
 }
